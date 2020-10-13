@@ -28,6 +28,41 @@
   color: #61dafb;
 }
 
+.pin dialog{
+  border: 2px solid red;
+  border-radius: 25px;
+  width : 100px;
+  vertical-align: top; 
+  position: fixed;
+  display:flex !important;
+
+}
+
+.pinPreview {
+  border: 2px solid blue;
+  border-radius: 25px;
+  display:inline-block;
+  
+}
+
+.pinWrapper {
+  width : 100px;
+}
+
+.pinPreview img {
+   max-width: 100%;
+   max-height: 100%;
+   border-radius : 25px;
+
+}
+
+.rowOfPins {
+  display : flex;
+  max-height : 200px;
+  justify-content: space-evenly;
+  padding-bottom : 100px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
