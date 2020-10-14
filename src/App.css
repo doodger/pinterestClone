@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.pinCloseUp {
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc;
+  display : flex;
+  justify-content: center;
+  vertical-align: middle;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.pinCloseUp .text{
+  display : flex;
+  flex-basis : 75%;
+  flex-direction: column;
+}
+
 .pin dialog{
   
   border: 2px solid red;
