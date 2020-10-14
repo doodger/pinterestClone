@@ -29,10 +29,12 @@
 }
 
 .pin dialog{
+  
   border: 2px solid red;
   border-radius: 25px;
   width : 100px;
   vertical-align: top; 
+  margin: auto;
   position: fixed;
   display:flex !important;
 
