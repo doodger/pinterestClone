@@ -29,9 +29,10 @@
 }
 
 .pinCloseUp {
-  -moz-box-shadow: 0 0 3px #ccc;
-  -webkit-box-shadow: 0 0 3px #ccc;
-  box-shadow: 0 0 3px #ccc;
+  border-radius: 25px;
+  -moz-box-shadow: 0 0 6px #ccc;
+  -webkit-box-shadow: 0 0 6px #ccc;
+  box-shadow: 0 0 6px #ccc;
   display : flex;
   justify-content: center;
   vertical-align: middle;
@@ -48,6 +49,7 @@
 }
 
 .pinCloseUp img{
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
@@ -67,7 +69,6 @@
 }
 
 .pinPreview {
-  border: 2px solid blue;
   border-radius: 25px;
   display:inline-block;
   
