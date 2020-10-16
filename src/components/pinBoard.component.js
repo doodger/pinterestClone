@@ -7,13 +7,13 @@ import axios from 'axios'
 
 export default function PinBoard(props) {
     const [pinSelected, setPinSelected] = useState(null);
-    const [collectionOfPins, setCollectionOfPins] = useState([]);
+    const [collectionOfPins, setCollectionOfPins] = useState( { pins : []} );
 
      useEffect( () => {
         axios.get('http://localhost:5000/api/pins')
         .then( response => { console.log("first",response.data.pins);
-                console.log("here is ", response.data.pins); 
-                setCollectionOfPins(response.data.pins);
+                const newPinCollection = { pins : response.data.pins} 
+                setCollectionOfPins( newPinCollection );
                 console.log("turned into ", collectionOfPins)
                 
             }).catch( (error) => {
@@ -56,31 +56,33 @@ export default function PinBoard(props) {
     //listOfPins.push( {collectionOfPins{1}})
 
     function renderListOfPins(a){
-        console.log("and here ", collectionOfPins[0])
-        return( a.map( pin => { return <Pin 
+        console.log("and here ", collectionOfPins["pins"][0])
+        return( a.map( pin => { return <Pin
+            id = {pin.id} 
             imgSource = {pin.imgSource} 
-            alt = {pin.alt} 
+            alt = {pin.alt}
+            title = {pin.title}
+            body = {pin.body} 
             selectPin = { pinSelection => setPinSelected(pinSelection)}
               /> 
             })
         );
     };
 
-
+//listOfPins.slice(0,3)
 return( !pinSelected ? (
   
     <div className = "board">
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(0,3)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(3,6)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(6,9)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(6,9)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(9,12)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(12,15)) }</div>
-        <div className = "rowOfPins" > { renderListOfPins(listOfPins.slice(15,18)) }</div>
+        <div className = "rowOfPins" > { renderListOfPins( collectionOfPins["pins"] ) }</div>
 
     </div>
         ) : 
-        (   <PinCloseUp imgSource = {pinSelected} selectPin = { pinSelection => setPinSelected(pinSelection)} /> )   
+        (   //todo: the use of -1 in the index is potentially dangerous for arrays of pins that are empty
+            <PinCloseUp imgSource = {collectionOfPins["pins"][pinSelected-1].imgSource}
+            alt =  {collectionOfPins["pins"][pinSelected-1].alt}
+            title = {collectionOfPins["pins"][pinSelected-1].title}
+            body = {collectionOfPins["pins"][pinSelected-1].body}
+            selectPin = { pinSelection => setPinSelected(collectionOfPins["pins"][pinSelection] ) } /> )   
         
     )
 }

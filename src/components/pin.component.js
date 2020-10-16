@@ -9,7 +9,7 @@ export default function Pin(props) {
 
 return(
 	<div className = "pinWrapper">
-			<div className = "pinPreview" onClick = { () => {console.log("inside"); props.selectPin(props.imgSource)}} >
+			<div className = "pinPreview" onClick = { () => { console.log("here is ", props.id); props.selectPin(props.id)}} >
 			<img src = {props.imgSource} 
 				alt = {props.alt} 
 				/>
