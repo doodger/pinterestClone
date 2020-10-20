@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/pinterest
+    stdin_open: true
+  server:
+    build:
+      context: ./backend/.
+      dockerfile: Dockerfile
+    environment: 
+      - NODE_ENV=production
+    entrypoint: ["/bin/bash", "./entrypoint.sh"]
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    volumes:
+    - .:/pinterest/backend
+    stdin_open: true
+  database:
+    image: "postgres" # use latest official postgres version
+    volumes:
+      - ./database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    environment:
+      - POSTGRES_USER=pinterest
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DATABASE=pinterestdb
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_PORT=5432
+    stdin_open: true
+
